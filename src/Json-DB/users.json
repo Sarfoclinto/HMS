@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": "c2a7",
+      "fullname": "shell Holmes",
+      "dob": "2024-08-05T00:00:00.000Z",
+      "gender": "male",
+      "phone": "0556034992",
+      "email": "she@hers.com",
+      "address": "AA-S438-9993",
+      "username": "hec_sherlock",
+      "password": "11111111",
+      "confirmPassword": "11111111",
+      "language": "english",
+      "nhisNumber": "NHIS123213",
+      "emgName": "shell Holmes",
+      "emgRelationship": "sibling",
+      "emgPhone": "0556034992",
+      "empId": "Emp-32"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Chela+One&display=swap");
+
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+.debug {
+  border: 1px solid red;
+}
+.chela{
+  font-family: "Chela One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.home-bg {
+  background-image: url(assets/doctor-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: luminosity;
+}
+
