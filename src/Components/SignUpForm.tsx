@@ -11,13 +11,14 @@ import AccountInfoForm from "./AccountInfoForm";
 import AdditionalInfoForm from "./AdditionalInfoForm";
 import { useState } from "react";
 import { FieldType } from "../Modules/types";
+import { v4 as uuid } from "uuid";
 
 type Props = {
   setLoginModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setClicked: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const SignUpForm = ({ setLoginModalOpen, setClicked }: Props) => {
+const SignUpForm = ({ setClicked }: Props) => {
   const [activeTab, setActiveTab] = useState<string>("1");
   const [loading, setLoading] = useState<boolean>(false);
   const [disabled] = useState({
@@ -25,7 +26,7 @@ const SignUpForm = ({ setLoginModalOpen, setClicked }: Props) => {
     account: activeTab === "2" ? false : true,
     additional: activeTab === "3" ? false : true,
   });
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [form] = Form.useForm();
 
   const submitData = () => {
@@ -108,7 +109,7 @@ const SignUpForm = ({ setLoginModalOpen, setClicked }: Props) => {
         setUserData(() => {
           return {
             ...values,
-            empId: `Emp-${values.id || Math.ceil(Math.random() * 1000 + 1)}`,
+            empId: `Emp-${values.department}-${uuid().split("-")[1]}`,
           };
         });
         return "3";

@@ -15,6 +15,7 @@ export type FieldType = {
   password?: string;
   confirmPassword?: string;
   language?: string;
+  department?: string;
   nhisNumber?: string;
   emgName?: string;
   emgRelationship?: string;

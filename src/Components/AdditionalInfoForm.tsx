@@ -13,12 +13,12 @@ type Props = {
 const AdditionalInfoForm = ({ setActiveTab, loading, submitData }: Props) => {
   const languages = [
     { value: "", label: "Select Language" },
-    { value: "english", label: "English" },
-    { value: "mandarin", label: "Mandarin Chinese" },
-    { value: "hindi", label: "Hindi" },
-    { value: "spanish", label: "Spanish" },
-    { value: "french", label: "French" },
-    { value: "ghanaian", label: "Ghanaian Language" },
+    { value: "English", label: "English" },
+    { value: "Mandarin", label: "Mandarin Chinese" },
+    { value: "Hindi", label: "Hindi" },
+    { value: "Spanish", label: "Spanish" },
+    { value: "French", label: "French" },
+    { value: "Ghanaian Language", label: "Ghanaian Language" },
   ];
   const relationship = [
     {
@@ -26,19 +26,19 @@ const AdditionalInfoForm = ({ setActiveTab, loading, submitData }: Props) => {
       label: "Select Relationship",
     },
     {
-      value: "spouse",
+      value: "Spouse",
       label: "Spouse",
     },
     {
-      value: "parent",
+      value: "Parent",
       label: "Parent",
     },
     {
-      value: "sibling",
+      value: "Sibling",
       label: "Sibling",
     },
     {
-      value: "relative",
+      value: "Relative",
       label: "Relative",
     },
   ];

@@ -1,5 +1,5 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Button, Flex, Form, Input } from "antd";
+import { Button, Flex, Form, Input, Select } from "antd";
 import { FieldType } from "../Modules/types";
 
 type Props = {
@@ -7,8 +7,26 @@ type Props = {
 };
 
 const AccountInfoForm = ({ setActiveTab }: Props) => {
+  const departmentOptions = [
+    { value: "", label: "Select Department" },
+    { value: "Clinical", label: "Clinical Departments" },
+    { value: "Supportive", label: "Supportive Departments" },
+    { value: "Technical", label: "Technical Departments" },
+    { value: "Administrative", label: "Administrative Departments" },
+    { value: "Ancillary", label: "Ancillary Services" },
+  ];
   return (
     <>
+      <Form.Item<FieldType>
+        label="Department"
+        name="department"
+        rules={[{ required: true, message: "Field is required" }]}
+        wrapperCol={{ span: 30 }}
+        labelCol={{ span: 7 }}
+        hasFeedback
+      >
+        <Select defaultValue={[""]} options={departmentOptions} />
+      </Form.Item>
       <Form.Item<FieldType>
         label="Username"
         name="username"

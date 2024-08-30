@@ -7,10 +7,16 @@
 .debug {
   border: 1px solid red;
 }
-.chela{
+.chela {
   font-family: "Chela One", system-ui;
   font-weight: 400;
   font-style: normal;
+}
+.chela-big {
+  font-family: "Chela One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 17px;
 }
 .home-bg {
   background-image: url(assets/doctor-bg.jpg);
@@ -18,4 +24,21 @@
   background-repeat: no-repeat;
   background-blend-mode: luminosity;
 }
-
+body {
+  overflow-y: scroll;
+  height: 100dvh;
+}
+.sider::-webkit-scrollbar,
+body::-webkit-scrollbar,
+.mainlayout::-webkit-scrollbar,
+.content::-webkit-scrollbar,
+#root::-webkit-scrollbar,
+.app::-webkit-scrollbar,
+.dashboard::-webkit-scrollbar {
+  display: none;
+}
+.dashboardCards {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1fr 1fr 1fr;
+}

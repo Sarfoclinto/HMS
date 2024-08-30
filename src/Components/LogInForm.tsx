@@ -1,8 +1,10 @@
 import { Form, Input, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { UserInputTypes } from "../Modules/types";
+import { replace, useNavigate } from "react-router-dom";
 
 const LogInForm = () => {
+  const navigate = useNavigate();
   const [form] = Form.useForm();
   const [userInputs, setUserInputs] = useState<UserInputTypes>({
     emailAddress: "",
@@ -63,7 +65,8 @@ const LogInForm = () => {
           setTimeout(() => {
             form.resetFields();
             // navigate to dashboard
-            message.success("Dashboard");
+            // message.success("Dashboard");
+            navigate("/dashboard", { replace: true });
           }, 300);
         }, 1000);
       } else {

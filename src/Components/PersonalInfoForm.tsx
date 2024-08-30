@@ -54,11 +54,11 @@ const PersonalInfoForm = () => {
               label: "Select Gender",
             },
             {
-              value: "male",
+              value: "Male",
               label: "Male",
             },
             {
-              value: "female",
+              value: "Female",
               label: "Female",
             },
           ]}
