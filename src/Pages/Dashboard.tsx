@@ -6,7 +6,9 @@ import type { TableProps } from "antd";
 import { useEffect, useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
 import { FieldType } from "../Modules/types";
-import { v4 as uuid } from "uuid";
+import { PatientType } from "../Modules/types";
+import { useOutletContext } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 
 // interface DataType {
 //   key: string;
@@ -22,13 +24,20 @@ type dataSource = {
   email: string;
   department: string;
 };
-
+type Props = {
+  inPatients: PatientType[];
+  outPatients: PatientType[];
+  isloading: boolean;
+};
 const Dashboard = () => {
   const [users, setUsers] = useState<FieldType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [datasource, setDataSource] = useState<dataSource[]>([]);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [data, setData] = useState<FieldType>({});
+
+  const { inPatients, outPatients, isloading }: Props = useOutletContext();
+
   const fetchUsers = () => {
     setLoading(true);
     fetch("http://localhost:8000/users")
@@ -67,13 +76,13 @@ const Dashboard = () => {
       });
   };
 
-  const close = () => {
-    setModalOpen(false);
-  };
   useEffect(() => {
     fetchUsers();
   }, []);
 
+  const close = () => {
+    setModalOpen(false);
+  };
   const display = (record: FieldType) => {
     setModalOpen(true);
     setData(record);
@@ -172,7 +181,7 @@ const Dashboard = () => {
             />
             <Flex vertical>
               <span className="text-right text-xl font-medium text-stone-500">
-                1
+                {isloading ? <LoadingOutlined /> : outPatients?.length}
               </span>
               <span className="text-lg text-gray-400">Out Patients</span>
             </Flex>
@@ -187,7 +196,7 @@ const Dashboard = () => {
             />
             <Flex vertical>
               <span className="text-right text-xl font-medium text-stone-500">
-                3
+                {isloading ? <LoadingOutlined /> : inPatients?.length}
               </span>
               <span className="text-lg text-gray-400">In Patients</span>
             </Flex>

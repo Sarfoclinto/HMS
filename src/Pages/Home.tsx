@@ -1,6 +1,6 @@
 import { Flex, Layout, Modal, Button } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import LogInForm from "../Components/LogInForm";
 import SignUpForm from "../Components/SignUpForm";
@@ -16,6 +16,9 @@ const Home = () => {
     setClicked(value);
     setLoginModalOpen(true);
   };
+  useEffect(() => {
+    sessionStorage.setItem("isAuthenticated", "false");
+  }, []);
   return (
     <Layout className="h-full ">
       <Modal

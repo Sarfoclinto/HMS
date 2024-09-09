@@ -1,8 +1,41 @@
 import { RightOutlined } from "@ant-design/icons";
-import { Breadcrumb, Flex, Card, Input, Button, Table } from "antd";
-import { NavLink } from "react-router-dom";
+import {
+  Breadcrumb,
+  Flex,
+  Card,
+  Input,
+  Button,
+  Table,
+  Space,
+  Modal,
+  message,
+} from "antd";
+import { Link, NavLink, useOutletContext } from "react-router-dom";
+import { PatientType } from "../../Modules/types";
+import { RiDeleteBinLine } from "react-icons/ri";
+import { BsEye } from "react-icons/bs";
+import { BiCheckSquare } from "react-icons/bi";
+import type { TableProps } from "antd";
+import { useState } from "react";
 
+type Props = {
+  patients: PatientType[];
+  setPatients: React.Dispatch<React.SetStateAction<PatientType[]>>;
+  loading: boolean;
+};
+
+type select = {
+  record: PatientType;
+  selectedrows: PatientType[];
+  selected: boolean;
+};
 const ManagePatients = () => {
+  const { patients, setPatients, loading }: Props = useOutletContext();
+
+  const [select, setSelect] = useState<select>();
+  const [deleteModal, setDeleteModal] = useState<boolean>(false);
+  const [deletePatientRecord, setDeletePatientRecord] = useState<PatientType>();
+
   const items = [
     {
       title: "Dashboard",
@@ -18,9 +51,188 @@ const ManagePatients = () => {
       ),
     },
   ];
+
+  const openModal = (record: PatientType) => {
+    setDeleteModal(true);
+    setDeletePatientRecord(record);
+  };
+
+  const singleDeletePateint = () => {
+    setPatients((prev) => {
+      return prev.filter((patients) => {
+        return patients.id !== deletePatientRecord?.id;
+      });
+    });
+    message.success("Patient deleted Successfully", 2);
+    close();
+  };
+
+  const columns: TableProps["columns"] = [
+    {
+      title: "#",
+      key: "has",
+      render: (_1, _2, index) => {
+        return index + 1;
+      },
+    },
+    {
+      title: "Patients",
+      key: "patients",
+      dataIndex: "fullname",
+    },
+    {
+      title: "Number",
+      key: "nuumber",
+      dataIndex: "patientId",
+    },
+    {
+      title: "Address",
+      key: "address",
+      dataIndex: "address",
+    },
+    {
+      title: "Category",
+      key: "category",
+      dataIndex: "category",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (_, record) => {
+        return (
+          <Flex align="center" gap={7}>
+            <Button
+              size="small"
+              type="primary"
+              danger
+              onClick={() => openModal(record)}
+              disabled={
+                select && select?.selectedrows.length >= 2 ? true : false
+              }
+            >
+              <Space>
+                <RiDeleteBinLine />
+                <span>Delete</span>
+              </Space>
+            </Button>
+            <Link
+              className="text-blue-600 font-medium "
+              to={`/dashboard/patients/${record.id}`}
+            >
+              <Space>
+                <BsEye />
+                <span>View</span>
+              </Space>
+            </Link>
+            <Button
+              size="small"
+              type="primary"
+              disabled={
+                select && select?.selectedrows.length >= 2 ? true : false
+              }
+            >
+              <Space>
+                <BiCheckSquare />
+                <span>Update</span>
+              </Space>
+            </Button>
+          </Flex>
+        );
+      },
+    },
+  ];
+
+  let dataSource = patients.map((patient) => {
+    return {
+      ...patient,
+      key: `${patient.patientId}-${patient.firstName?.charAt(
+        1
+      )}-${patient.lastName?.charAt(1)}`,
+      fullname: `${patient.firstName}  ${patient.lastName}`,
+    };
+  });
+  const close = () => {
+    setDeleteModal(false);
+  };
+
+  const deleteMultiplePatients = () => {
+    // setMapData((prev) => {
+    //   return prev.filter((task) => {
+    //     return !select.selectedrows
+    //       .map((selected) => selected.key)
+    //       .includes(task.key);
+    //   });
+    // });
+    setPatients((prev) => {
+      return prev.filter((patient) => {
+        return !select?.selectedrows
+          .map((selected) => selected.id)
+          .includes(patient.id);
+      });
+    });
+    message.success("Selected Patients deleted Successfully", 2);
+    close();
+    setSelect(() => {
+      return {
+        record: {},
+        selectedrows: [],
+        selected: false,
+      };
+    });
+  };
   return (
     <main>
-      <Flex align="center" justify="space-between">
+      <Modal
+        footer={null}
+        onCancel={close}
+        onClose={close}
+        open={deleteModal}
+        closable={false}
+      >
+        <h1 className="text-lg font-semibold">
+          {select && select?.selectedrows.length >= 2 ? (
+            <div>
+              Are you sure you want to{" "}
+              <span className="text-red-600">Delete &nbsp;</span>
+              the
+              <br />
+              <span className="text-red-600">Selected Rows of Patients</span>
+            </div>
+          ) : (
+            <div>
+              Are you sure you want to{" "}
+              <span className="text-red-600">Delete</span> patient &nbsp;
+              <br />
+              <span className="text-stone-500">
+                {`${deletePatientRecord?.firstName}  ${deletePatientRecord?.lastName}?`}
+              </span>
+            </div>
+          )}
+        </h1>
+        <Flex align="center" justify="flex-end" className="mt-3">
+          <Space>
+            {select && select?.selectedrows.length >= 2 ? (
+              <Button type="primary" danger onClick={deleteMultiplePatients}>
+                Delete
+              </Button>
+            ) : (
+              <Button type="primary" danger onClick={singleDeletePateint}>
+                Delete
+              </Button>
+            )}
+            <Button
+              type="primary"
+              onClick={() => {
+                message.info("Delete Aborted");
+                close();
+              }}
+            >
+              Cancle
+            </Button>
+          </Space>
+        </Flex>
+      </Modal>
+      <Flex align="center" justify="space-between" className="mb-5">
         <div className="heading text-xl font-medium">
           Manage Patients Details
         </div>
@@ -29,13 +241,34 @@ const ManagePatients = () => {
       <Card>
         <Flex align="center" justify="space-between" className="mb-5">
           <Input width={50} className="w-1/4" placeholder="Search" />
-          {true && (
-            <Button size="middle" danger type="primary">
+          {select && select?.selectedrows?.length >= 2 && (
+            <Button
+              size="middle"
+              danger
+              type="primary"
+              onClick={() => setDeleteModal(true)}
+            >
               Delete
             </Button>
           )}
         </Flex>
-        <Table />
+        <Table
+          rowSelection={{
+            type: "checkbox",
+            onSelect: (record, selected, selectedrows) => {
+              setSelect(() => {
+                return {
+                  selected,
+                  selectedrows,
+                  record,
+                };
+              });
+            },
+          }}
+          loading={loading}
+          columns={columns}
+          dataSource={dataSource}
+        />
       </Card>
     </main>
   );

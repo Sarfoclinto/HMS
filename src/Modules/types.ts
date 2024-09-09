@@ -21,3 +21,20 @@ export type FieldType = {
   emgRelationship?: string;
   emgPhone?: string;
 };
+
+export type Patient = {
+  id: string;
+  patientId: string;
+  firstName: string;
+  lastName: string;
+  dob: string;
+  age: string;
+  gender: string;
+  diagnosis: string;
+  medication: string;
+  address: string;
+  mobileContact: string;
+  category: "Outpatient" | "Inpatient" | "Choose";
+};
+
+export type PatientType = Partial<Patient>;

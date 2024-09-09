@@ -42,3 +42,10 @@ body::-webkit-scrollbar,
   gap: 15px;
   grid-template-columns: 1fr 1fr 1fr;
 }
+
+#viewPatientsDetailsTile {
+  display: grid;
+  gap: 15px;
+  grid-template-columns: 1.5fr 2.2fr;
+}
+

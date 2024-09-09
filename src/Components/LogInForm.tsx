@@ -1,7 +1,7 @@
 import { Form, Input, Button, message } from "antd";
 import { useEffect, useState } from "react";
 import { UserInputTypes } from "../Modules/types";
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LogInForm = () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ const LogInForm = () => {
   });
   const [users, setUsers] = useState(null);
   const [loading, setLoading] = useState<boolean>(false);
-
   const handleUserInputChange = (e) => {
     const { name, value } = e.target;
     setUserInputs((prev) => {
@@ -58,14 +57,13 @@ const LogInForm = () => {
         user.email === values.emailAddress &&
         user.password === values.password
       ) {
+        sessionStorage.setItem("isAuthenticated", "true");
         setLoading(true);
         setTimeout(() => {
           message.success("Login successfully", 2);
           setLoading(false);
           setTimeout(() => {
             form.resetFields();
-            // navigate to dashboard
-            // message.success("Dashboard");
             navigate("/dashboard", { replace: true });
           }, 300);
         }, 1000);
