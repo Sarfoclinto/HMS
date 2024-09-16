@@ -79,32 +79,6 @@
   ],
   "patients": [
     {
-      "patientId": "P4567",
-      "firstName": "Simmonds",
-      "lastName": "Tomaszczyk",
-      "dob": "2/26/2024",
-      "age": 75,
-      "gender": "Male",
-      "diagnosis": "migraine",
-      "medication": "Aspirin",
-      "address": "74705 Dryden Pass",
-      "mobileContact": "176-575-4062",
-      "category": "Outpatient"
-    },
-    {
-      "patientId": "P2345",
-      "firstName": "Wilton",
-      "lastName": "Avison",
-      "dob": "7/13/2024",
-      "age": 111,
-      "gender": "Male",
-      "diagnosis": "allergies",
-      "medication": "Insulin",
-      "address": "175 Fair Oaks Circle",
-      "mobileContact": "644-845-2369",
-      "category": "Inpatient"
-    },
-    {
       "patientId": "P8901",
       "firstName": "Florella",
       "lastName": "Twelvetree",
@@ -115,46 +89,50 @@
       "medication": "Insulin",
       "address": "89914 Meadow Valley Crossing",
       "mobileContact": "381-130-6677",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "4910"
     },
     {
-      "patientId": "P8901",
-      "firstName": "Olia",
-      "lastName": "Deneve",
-      "dob": "1/7/2024",
-      "age": 115,
-      "gender": "Female",
-      "diagnosis": "sprained ankle",
-      "medication": "Ibuprofen",
+      "firstName": "Thanos",
+      "lastName": "Thor",
+      "dob": "2024-09-25T00:00:00.000Z",
+      "age": "15",
       "address": "8066 Susan Terrace",
+      "gender": "Male",
       "mobileContact": "739-148-5976",
-      "category": "Outpatient"
+      "diagnosis": "sprained ankle",
+      "category": "Inpatient",
+      "patientId": "P450e",
+      "medication": "",
+      "id": "9107"
     },
     {
-      "patientId": "P1234",
-      "firstName": "Stewart",
+      "firstName": "Mimi",
       "lastName": "Peschke",
-      "dob": "4/13/2024",
-      "age": 70,
-      "gender": "Male",
-      "diagnosis": "food poisoning",
-      "medication": "Insulin",
+      "dob": "2024-09-06T00:00:00.000Z",
+      "age": "70",
       "address": "916 Swallow Center",
-      "mobileContact": "714-773-6026",
-      "category": "Inpatient"
+      "gender": "Male",
+      "mobileContact": "345-0090-6798",
+      "diagnosis": "food poisoning",
+      "category": "Inpatient",
+      "patientId": "P462c",
+      "medication": "",
+      "id": "ab8d"
     },
     {
-      "patientId": "P7890",
-      "firstName": "Alfredo",
+      "firstName": "Alfred",
       "lastName": "Stanbrooke",
-      "dob": "2/9/2024",
-      "age": 72,
-      "gender": "Male",
-      "diagnosis": "common cold",
-      "medication": "Aspirin",
+      "dob": "2024-09-26T00:00:00.000Z",
+      "age": "72",
       "address": "69 Comanche Terrace",
+      "gender": "Other",
       "mobileContact": "625-733-4950",
-      "category": "Inpatient"
+      "diagnosis": "common cold",
+      "category": "Outpatient",
+      "patientId": "P48b5",
+      "medication": "",
+      "id": "0888"
     },
     {
       "patientId": "P3456",
@@ -167,20 +145,8 @@
       "medication": "Ibuprofen",
       "address": "00 Di Loreto Court",
       "mobileContact": "320-746-4066",
-      "category": "Outpatient"
-    },
-    {
-      "patientId": "P9012",
-      "firstName": "Ron",
-      "lastName": "Gocher",
-      "dob": "11/14/2023",
-      "age": 91,
-      "gender": "Male",
-      "diagnosis": "migraine",
-      "medication": "Ventolin",
-      "address": "9 Butternut Trail",
-      "mobileContact": "182-968-1818",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "670a"
     },
     {
       "patientId": "P4567",
@@ -193,7 +159,8 @@
       "medication": "Chemotherapy",
       "address": "21571 Esker Hill",
       "mobileContact": "602-623-1686",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "d5cb"
     },
     {
       "patientId": "P5678",
@@ -206,7 +173,8 @@
       "medication": "Aspirin",
       "address": "37 Forest Run Point",
       "mobileContact": "977-232-6380",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "7421"
     },
     {
       "patientId": "P1234",
@@ -219,7 +187,8 @@
       "medication": "Chemotherapy",
       "address": "4 2nd Court",
       "mobileContact": "546-307-4416",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "29f2"
     },
     {
       "patientId": "P2345",
@@ -232,7 +201,8 @@
       "medication": "Chemotherapy",
       "address": "43 Sunfield Road",
       "mobileContact": "668-856-4559",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "48ea"
     },
     {
       "patientId": "P0123",
@@ -245,7 +215,8 @@
       "medication": "Ibuprofen",
       "address": "744 Amoth Point",
       "mobileContact": "884-586-5064",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "7a7d"
     },
     {
       "patientId": "P6789",
@@ -258,7 +229,8 @@
       "medication": "Ventolin",
       "address": "57 Acker Lane",
       "mobileContact": "457-445-6609",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "b509"
     },
     {
       "patientId": "P1234",
@@ -271,7 +243,8 @@
       "medication": "Ventolin",
       "address": "45 Hansons Trail",
       "mobileContact": "634-271-9408",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "c350"
     },
     {
       "patientId": "P9012",
@@ -284,7 +257,8 @@
       "medication": "Ibuprofen",
       "address": "3243 Towne Hill",
       "mobileContact": "542-686-7190",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "56db"
     },
     {
       "patientId": "P7890",
@@ -297,7 +271,8 @@
       "medication": "Ventolin",
       "address": "15765 North Terrace",
       "mobileContact": "563-858-9541",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "deb8"
     },
     {
       "patientId": "P8901",
@@ -310,7 +285,8 @@
       "medication": "Aspirin",
       "address": "94638 Acker Court",
       "mobileContact": "334-806-8562",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "388f"
     },
     {
       "patientId": "P0123",
@@ -323,7 +299,8 @@
       "medication": "Insulin",
       "address": "5 Delaware Terrace",
       "mobileContact": "624-808-2285",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "8974"
     },
     {
       "patientId": "P6789",
@@ -336,7 +313,8 @@
       "medication": "Chemotherapy",
       "address": "0 Menomonie Road",
       "mobileContact": "261-573-6011",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "a83c"
     },
     {
       "patientId": "P5678",
@@ -349,7 +327,8 @@
       "medication": "Ibuprofen",
       "address": "3572 Blaine Circle",
       "mobileContact": "524-166-9447",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "0cb2"
     },
     {
       "patientId": "P1234",
@@ -362,7 +341,8 @@
       "medication": "Chemotherapy",
       "address": "68 Lunder Junction",
       "mobileContact": "984-877-3161",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "01c0"
     },
     {
       "patientId": "P1234",
@@ -375,7 +355,8 @@
       "medication": "Insulin",
       "address": "93 Carpenter Center",
       "mobileContact": "733-643-9393",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "de11"
     },
     {
       "patientId": "P7890",
@@ -388,7 +369,8 @@
       "medication": "Chemotherapy",
       "address": "3 Mesta Alley",
       "mobileContact": "569-266-7390",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "a621"
     },
     {
       "patientId": "P3456",
@@ -401,7 +383,8 @@
       "medication": "Chemotherapy",
       "address": "471 Lighthouse Bay Street",
       "mobileContact": "102-131-9279",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "a861"
     },
     {
       "patientId": "P3456",
@@ -414,7 +397,8 @@
       "medication": "Insulin",
       "address": "2914 Westend Pass",
       "mobileContact": "616-180-8070",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "e0b3"
     },
     {
       "patientId": "P0123",
@@ -427,7 +411,8 @@
       "medication": "Ibuprofen",
       "address": "30 Dwight Place",
       "mobileContact": "531-636-4254",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "b1b8"
     },
     {
       "patientId": "P1234",
@@ -440,7 +425,8 @@
       "medication": "Ibuprofen",
       "address": "36212 Hintze Street",
       "mobileContact": "713-151-4742",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "8fd1"
     },
     {
       "patientId": "P3456",
@@ -453,7 +439,8 @@
       "medication": "Ventolin",
       "address": "3 Veith Alley",
       "mobileContact": "534-922-5817",
-      "category": "Outpatient"
+      "category": "Outpatient",
+      "id": "9d5e"
     },
     {
       "patientId": "P1234",
@@ -466,7 +453,22 @@
       "medication": "Insulin",
       "address": "58 Columbus Road",
       "mobileContact": "244-979-9328",
-      "category": "Inpatient"
+      "category": "Inpatient",
+      "id": "3d44"
+    },
+    {
+      "id": "d054",
+      "firstName": "Clinton",
+      "lastName": "Sarfo",
+      "dob": "2024-09-28T00:00:00.000Z",
+      "age": "88",
+      "address": "AA-S438-9993",
+      "gender": "Male",
+      "mobileContact": "0595792992",
+      "diagnosis": "Healthy",
+      "category": "Inpatient",
+      "patientId": "P4d98",
+      "medication": ""
     }
   ]
 }

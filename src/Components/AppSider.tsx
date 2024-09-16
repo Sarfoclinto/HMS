@@ -6,7 +6,7 @@ import {
   ScissorOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import {
   FaMoneyBill,
   FaMoneyBillTransfer,
@@ -21,7 +21,7 @@ import { CgPassword } from "react-icons/cg";
 type MenuItem = Required<MenuProps>["items"][number];
 const items: MenuItem[] = [
   {
-    key: "dashboard",
+    key: "/dashboard",
     label: <NavLink to="/dashboard">Dashboard</NavLink>,
     icon: <DesktopOutlined />,
   },
@@ -31,27 +31,27 @@ const items: MenuItem[] = [
     icon: <FaWheelchairMove />,
     children: [
       {
-        key: "registerPatients",
+        key: "/dashboard/patients/registerPatients",
         label: (
           <NavLink to="patients/registerPatients">Register Patient</NavLink>
         ),
       },
       {
-        key: "viewPatients",
+        key: "/dashboard/patients/viewPatients",
         label: <NavLink to="patients/viewPatients">View Patient</NavLink>,
       },
       {
-        key: "managePatients",
+        key: "/dashboard/patients/managePatients",
         label: <NavLink to="patients/managePatients">Manage Patient</NavLink>,
       },
       {
-        key: "dischargePatients",
+        key: "/dashboard/patients/dischargePatients",
         label: (
           <NavLink to="patients/dischargePatients">Discharge Patient</NavLink>
         ),
       },
       {
-        key: "patientTransfer",
+        key: "/dashboard/patients/patientsTransfer",
         label: (
           <NavLink to="patients/patientsTransfer">Patient Transfer</NavLink>
         ),
@@ -141,13 +141,28 @@ const items: MenuItem[] = [
   },
 ];
 const AppSider = () => {
+  const { pathname } = useLocation();
+  let defaultOpenKeys = "/dashboard";
+  const locationArray = pathname.split("/");
+
+  if (locationArray.length == 2) {
+    defaultOpenKeys = "/dashboard";
+  } else if (locationArray.length > 2) {
+    defaultOpenKeys = locationArray[2];
+  }
+
   return (
     <Sider
       theme="light"
       className="sider h-full min-h-[563px] overflow-y-scroll"
       title="Navigation"
     >
-      <Menu items={items} mode="inline" defaultSelectedKeys={["dashboard"]} />
+      <Menu
+        items={items}
+        mode="inline"
+        defaultSelectedKeys={[pathname]}
+        defaultOpenKeys={[defaultOpenKeys]}
+      />
     </Sider>
   );
 };

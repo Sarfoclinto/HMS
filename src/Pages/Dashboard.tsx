@@ -271,9 +271,6 @@ const Dashboard = () => {
           <h1 className="text-2xl mb-3">Hospital Employees</h1>
           <Table columns={columns} loading={loading} dataSource={datasource} />
         </Card>
-        <footer className="my-3 text-sm font-medium">
-          2023 - 2024 &copy; <span>Hospital Management System</span>{" "}
-        </footer>
       </section>
     </main>
   );

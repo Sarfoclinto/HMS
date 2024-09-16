@@ -16,7 +16,7 @@ const ViewPatients = () => {
 
   const items = [
     {
-      title: "Dashboard",
+      title: <NavLink to="/dashboard">Dashboard</NavLink>,
     },
     {
       title: <span>Patients</span>,
@@ -40,21 +40,95 @@ const ViewPatients = () => {
       title: "Patients",
       key: "patients",
       dataIndex: "fullname",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            autoFocus={true}
+            placeholder="Name here"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.fullname.toLowerCase().includes(value);
+      },
     },
     {
       title: "Number",
       key: "nuumber",
       dataIndex: "patientId",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Patient ID here"
+            autoFocus
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.patientId.toLowerCase().includes(value);
+      },
     },
     {
       title: "Address",
       key: "address",
       dataIndex: "address",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Address here"
+            autoFocus
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.address.toLowerCase().includes(value);
+      },
     },
     {
       title: "Category",
       key: "category",
       dataIndex: "category",
+      filters: [
+        {
+          text: "Inpatient",
+          value: "Inpatient",
+        },
+        {
+          text: "Outpatient",
+          value: "Outpatient",
+        },
+        {
+          text: "Choose",
+          value: "Choose",
+        },
+      ],
+      onFilter: (value, record) => {
+        return record.category === value;
+      },
     },
     {
       title: "Action",

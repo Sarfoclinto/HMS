@@ -87,10 +87,7 @@ const ViewPatientDetails = () => {
                   Date Of Birth :{" "}
                   <span className="font-medium text-gray-500">{`${patient.dob} `}</span>{" "}
                 </h1>
-                <h1 className="text-base font-bold">
-                  Full Name :{" "}
-                  <span className="font-medium text-gray-500">{`${patient.firstName} `}</span>{" "}
-                </h1>
+
                 <h1 className="text-base font-bold">
                   Age :{" "}
                   <span className="font-medium text-gray-500">{`${patient.age} Years`}</span>{" "}

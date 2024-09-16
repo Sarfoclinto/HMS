@@ -22,6 +22,7 @@ type Props = {
   patients: PatientType[];
   setPatients: React.Dispatch<React.SetStateAction<PatientType[]>>;
   loading: boolean;
+  setAdd: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type select = {
@@ -30,15 +31,16 @@ type select = {
   selected: boolean;
 };
 const ManagePatients = () => {
-  const { patients, setPatients, loading }: Props = useOutletContext();
+  const { patients, setPatients, loading, setAdd }: Props = useOutletContext();
 
   const [select, setSelect] = useState<select>();
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [deletePatientRecord, setDeletePatientRecord] = useState<PatientType>();
+  const [deleting, setDeleting] = useState<boolean>(false);
 
   const items = [
     {
-      title: "Dashboard",
+      title: <NavLink to="/dashboard">Dashboard</NavLink>,
     },
     {
       title: <span>Patients</span>,
@@ -58,13 +60,26 @@ const ManagePatients = () => {
   };
 
   const singleDeletePateint = () => {
-    setPatients((prev) => {
-      return prev.filter((patients) => {
-        return patients.id !== deletePatientRecord?.id;
-      });
-    });
-    message.success("Patient deleted Successfully", 2);
-    close();
+    setDeleting(true);
+    setTimeout(() => {
+      fetch(`http://localhost:8000/patients/${deletePatientRecord?.id}`, {
+        method: "DELETE",
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setAdd((prev) => prev + 1);
+          setDeleting(false);
+          message.success("Patient deleted Successfully", 2);
+          close();
+          console.log(data);
+        })
+        .catch((err) => {
+          setDeleting(false);
+          message.error(err, 2);
+        });
+    }, 1000);
   };
 
   const columns: TableProps["columns"] = [
@@ -79,21 +94,95 @@ const ManagePatients = () => {
       title: "Patients",
       key: "patients",
       dataIndex: "fullname",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            autoFocus={true}
+            placeholder="Name here"
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.fullname.toLowerCase().includes(value);
+      },
     },
     {
       title: "Number",
-      key: "nuumber",
+      key: "number",
       dataIndex: "patientId",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Patient ID here"
+            autoFocus
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.patientId.toLowerCase().includes(value);
+      },
     },
     {
       title: "Address",
       key: "address",
       dataIndex: "address",
+      filterDropdown: ({ selectedKeys, setSelectedKeys, confirm }) => {
+        return (
+          <Input
+            placeholder="Address here"
+            autoFocus
+            onPressEnter={() => confirm()}
+            onBlur={() => confirm()}
+            value={selectedKeys[0]}
+            onChange={(e) => {
+              setSelectedKeys(e.target.value ? [e.target.value] : []);
+              confirm({ closeDropdown: false });
+            }}
+            allowClear
+          ></Input>
+        );
+      },
+      onFilter: (value, record) => {
+        return record.address.toLowerCase().includes(value);
+      },
     },
     {
       title: "Category",
       key: "category",
       dataIndex: "category",
+      filters: [
+        {
+          text: "Inpatient",
+          value: "Inpatient",
+        },
+        {
+          text: "Outpatient",
+          value: "Outpatient",
+        },
+        {
+          text: "Choose",
+          value: "Choose",
+        },
+      ],
+      onFilter: (value, record) => {
+        return record.category === value;
+      },
     },
     {
       title: "Action",
@@ -124,18 +213,20 @@ const ManagePatients = () => {
                 <span>View</span>
               </Space>
             </Link>
-            <Button
-              size="small"
-              type="primary"
-              disabled={
-                select && select?.selectedrows.length >= 2 ? true : false
-              }
-            >
-              <Space>
-                <BiCheckSquare />
-                <span>Update</span>
-              </Space>
-            </Button>
+            <NavLink to={`/dashboard/patients/updatePatient/${record.id}`}>
+              <Button
+                size="small"
+                type="primary"
+                disabled={
+                  select && select?.selectedrows.length >= 2 ? true : false
+                }
+              >
+                <Space>
+                  <BiCheckSquare />
+                  <span>Update</span>
+                </Space>
+              </Button>
+            </NavLink>
           </Flex>
         );
       },
@@ -216,7 +307,13 @@ const ManagePatients = () => {
                 Delete
               </Button>
             ) : (
-              <Button type="primary" danger onClick={singleDeletePateint}>
+              <Button
+                type="primary"
+                loading={deleting}
+                disabled={deleting}
+                danger
+                onClick={singleDeletePateint}
+              >
                 Delete
               </Button>
             )}

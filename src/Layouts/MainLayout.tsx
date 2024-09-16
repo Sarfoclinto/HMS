@@ -13,7 +13,9 @@ const MainLayout = () => {
   const [patients, setPatients] = useState<PatientType[]>([]);
   const [inPatients, setInPatients] = useState<PatientType[]>([]);
   const [outPatients, setOutPatients] = useState<PatientType[]>([]);
-  const fetchUsers = () => {
+  const [add, setAdd] = useState<number>(0);
+
+  const fetchPatients = () => {
     setLoading(true);
     fetch("http://localhost:8000/patients")
       .then((res) => {
@@ -45,8 +47,8 @@ const MainLayout = () => {
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchPatients();
+  }, [add]);
 
   return (
     <Layout className="mainlayout w-full h-dvh overflow-y-scroll">
@@ -62,11 +64,16 @@ const MainLayout = () => {
                 outPatients,
                 isloading,
                 setPatients,
+                setAdd,
+                setInPatients,
               }}
             />
           ) : (
             <Navigate to="/" />
           )}
+          <footer className="my-3 text-sm font-medium">
+            2023 - 2024 &copy; <span>Hospital Management System</span>{" "}
+          </footer>
         </Content>
       </Layout>
     </Layout>
