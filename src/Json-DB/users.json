@@ -93,20 +93,6 @@
       "id": "4910"
     },
     {
-      "firstName": "Thanos",
-      "lastName": "Thor",
-      "dob": "2024-09-25T00:00:00.000Z",
-      "age": "15",
-      "address": "8066 Susan Terrace",
-      "gender": "Male",
-      "mobileContact": "739-148-5976",
-      "diagnosis": "sprained ankle",
-      "category": "Inpatient",
-      "patientId": "P450e",
-      "medication": "",
-      "id": "9107"
-    },
-    {
       "firstName": "Mimi",
       "lastName": "Peschke",
       "dob": "2024-09-06T00:00:00.000Z",

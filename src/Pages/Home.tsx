@@ -78,13 +78,13 @@ const Home = () => {
           <h1 className="text-4xl font-bold w-full text-right">
             Leading the way in medical excellence
           </h1>
-          <p className="text-base text-stone-600">
+          <p className="text-base font-medium black">
             HMS is awarded as one of the Top Hospital Management System, which
             can integrate all the HIS system, processes and machines into an
             inteligent information system to derive operationl efficiency and
             assist hospital in decision making process through MIS and Analytics
           </p>
-          <p className="text-base text-stone-600">
+          <p className="text-base font-medium black">
             HMS is awarded as one of the Top Hospital Management System, which
             can integrate all the HIS system, processes and machines into an
             inteligent information system to derive operationl efficiency and

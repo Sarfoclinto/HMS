@@ -1,6 +1,6 @@
 import { Form, Input, Button, message } from "antd";
-import { useEffect, useState } from "react";
-import { UserInputTypes } from "../Modules/types";
+import { ChangeEvent, useState } from "react";
+import { UserInputTypes, UserTypes } from "../Modules/types";
 import { useNavigate } from "react-router-dom";
 
 const LogInForm = () => {
@@ -10,9 +10,12 @@ const LogInForm = () => {
     emailAddress: "",
     password: "",
   });
-  const [users, setUsers] = useState(null);
+  // const [users, setUsers] = useState<UserTypes[]>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const handleUserInputChange = (e) => {
+
+  const handleUserInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setUserInputs((prev) => {
       return {
@@ -22,36 +25,32 @@ const LogInForm = () => {
     });
   };
 
-  const fetchUsers = () => {
-    setLoading(true);
-    fetch("http://localhost:8000/users")
-      .then((res) => {
-        if (!res.ok) {
-          message.info("Sorry, there was an error");
-          throw new Error("Sorry, there was an error");
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(false);
-        message.info(error);
-        throw new Error(error);
-      });
-  };
+  // const fetchUsers = () => {
+  //   setLoading(true);
+  //   fetch("http://localhost:8000/users")
+  //     .then((res) => {
+  //       if (!res.ok) {
+  //         message.info("Sorry, there was an error");
+  //         throw new Error("Sorry, there was an error");
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       setUsers(data);
+  //       setLoading(false);
+  //     })
+  //     .catch((error) => {
+  //       setLoading(false);
+  //       message.info(error);
+  //       throw new Error(error);
+  //     });
+  // };
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   fetchUsers();
+  // }, []);
 
-  const onFinish = (values) => {
-    const user = users?.find((user) => {
-      return user.email === values.emailAddress;
-    });
-
+  const validate = (user: UserTypes, values: UserInputTypes) => {
     if (user) {
       if (
         user.email === values.emailAddress &&
@@ -68,7 +67,7 @@ const LogInForm = () => {
           }, 300);
         }, 1000);
       } else {
-        message.info("Login errro. Email or Password Incorrect", 3);
+        message.info("Login erro. Email or Password Incorrect", 3);
         setTimeout(() => {
           form.resetFields();
         }, 1000);
@@ -76,6 +75,61 @@ const LogInForm = () => {
     } else {
       message.error(`Sorry, User ${userInputs.emailAddress} not found`);
     }
+  };
+  const onFinish = (values: UserInputTypes) => {
+    let user;
+
+    setLoading(true);
+    fetch("http://localhost:8000/users")
+      .then((res) => {
+        if (!res.ok) {
+          message.info("Sorry, there was an error");
+          throw new Error("Sorry, there was an error");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setLoading(false);
+        user = data?.find((user: UserTypes) => {
+          return user.email === values.emailAddress;
+        });
+        validate(user, values);
+      })
+      .catch((error) => {
+        setLoading(false);
+        message.info(error);
+        throw new Error(error);
+      });
+    // const user = users?.find((user) => {
+    //   return user.email === values.emailAddress;
+    // });
+
+    // if (user) {
+    //   if (
+    //     user.email === values.emailAddress &&
+    //     user.password === values.password
+    //   ) {
+    //     sessionStorage.setItem("isAuthenticated", "true");
+    //     setLoading(true);
+    //     setTimeout(() => {
+    //       message.success("Login successfully", 2);
+    //       setLoading(false);
+    //       setTimeout(() => {
+    //         form.resetFields();
+    //         navigate("/dashboard", { replace: true });
+    //       }, 300);
+    //     }, 1000);
+    //   }
+    //   else {
+    //     message.info("Login erro. Email or Password Incorrect", 3);
+    //     setTimeout(() => {
+    //       form.resetFields();
+    //     }, 1000);
+    //   }
+    // }
+    // else {
+    //   message.error(`Sorry, User ${userInputs.emailAddress} not found`);
+    // }
   };
 
   return (
