@@ -233,7 +233,7 @@ const ManagePatients = () => {
     },
   ];
 
-  let dataSource = patients.map((patient) => {
+  const dataSource = patients.map((patient) => {
     return {
       ...patient,
       key: `${patient.patientId}-${patient.firstName?.charAt(

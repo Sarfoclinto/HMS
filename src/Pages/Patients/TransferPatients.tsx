@@ -151,7 +151,7 @@ const TransferPatients = () => {
     },
   ];
 
-  let dataSource = inPatients.map((patient) => {
+  const dataSource = inPatients.map((patient) => {
     return {
       ...patient,
       key: `${patient.patientId}-${patient.firstName?.charAt(

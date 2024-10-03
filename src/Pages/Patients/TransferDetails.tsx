@@ -3,7 +3,7 @@ import { NavLink, useOutletContext, useParams } from "react-router-dom";
 import { RightOutlined } from "@ant-design/icons";
 import TransferDetailForm from "../../Components/TransferDetailForm";
 import { PatientType } from "../../Modules/types";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const TransferDetails = () => {
   const { patients }: { patients: PatientType[] } = useOutletContext();
@@ -34,7 +34,9 @@ const TransferDetails = () => {
     transferDate: "",
   });
 
-  const onChange = (e) => {
+  const onChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setTransferDetails((prev) => {
       return {

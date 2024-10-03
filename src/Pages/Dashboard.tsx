@@ -9,6 +9,7 @@ import { FieldType } from "../Modules/types";
 import { PatientType } from "../Modules/types";
 import { useOutletContext } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
+import { CompoundedStatistic } from "antd/es/statistic";
 
 // interface DataType {
 //   key: string;
@@ -19,7 +20,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 // }
 
 type dataSource = {
-  picture: any;
+  picture: CompoundedStatistic;
   name: string;
   email: string;
   department: string;

@@ -1,18 +1,24 @@
 import { Form, Input, Flex, DatePicker, Button } from "antd";
+import { ChangeEventHandler } from "react";
 type Props = {
   name: string | undefined;
   referralHospital: string;
   transferDate: string;
-  onChange: any;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 };
+
+interface onFinishType {
+  name?: string;
+  referralHospital: string;
+  transferDate: string;
+}
 
 const TransferDetailForm = ({
   name,
   referralHospital,
-  transferDate,
   onChange,
 }: Props) => {
-  const onFinish = (values) => {
+  const onFinish = (values: onFinishType) => {
     console.log(values);
   };
 
@@ -54,7 +60,6 @@ const TransferDetailForm = ({
         >
           <DatePicker
             className="w-full"
-            value={transferDate}
             onChange={onChange}
             name="transferDate"
           />
