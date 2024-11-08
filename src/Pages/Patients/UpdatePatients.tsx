@@ -57,7 +57,7 @@ const UpdatePatients = () => {
     };
     setLoading(true);
     setTimeout(() => {
-      fetch(`http://localhost:8000/patients/${updateId}`, {
+      fetch(`http://localhost:8001/patients/${updateId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

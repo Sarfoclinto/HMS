@@ -75,23 +75,28 @@
       "emgRelationship": "Relative",
       "emgPhone": "0599919589",
       "empId": "Emp-Technical-dd6c"
+    },
+    {
+      "id": "7561",
+      "fullname": "Sarfo Clinton",
+      "dob": "2024-10-15T00:00:00.000Z",
+      "gender": "Male",
+      "phone": "0595792992",
+      "email": "wolffighter00000@gmail.com",
+      "address": "AA-S438-9993",
+      "department": "Supportive",
+      "username": "hecsherlock",
+      "password": "mypassword",
+      "confirmPassword": "mypassword",
+      "language": "English",
+      "nhisNumber": "7777i7uuuu",
+      "emgName": "Hec sherlock",
+      "emgRelationship": "Spouse",
+      "emgPhone": "0595792992",
+      "empId": "Emp-Supportive-7c11"
     }
   ],
   "patients": [
-    {
-      "patientId": "P8901",
-      "firstName": "Florella",
-      "lastName": "Twelvetree",
-      "dob": "7/5/2024",
-      "age": 91,
-      "gender": "Female",
-      "diagnosis": "sprained ankle",
-      "medication": "Insulin",
-      "address": "89914 Meadow Valley Crossing",
-      "mobileContact": "381-130-6677",
-      "category": "Inpatient",
-      "id": "4910"
-    },
     {
       "firstName": "Mimi",
       "lastName": "Peschke",
@@ -161,20 +166,6 @@
       "mobileContact": "977-232-6380",
       "category": "Outpatient",
       "id": "7421"
-    },
-    {
-      "patientId": "P1234",
-      "firstName": "Chelsy",
-      "lastName": "Matysik",
-      "dob": "9/2/2023",
-      "age": 117,
-      "gender": "Female",
-      "diagnosis": "flu",
-      "medication": "Chemotherapy",
-      "address": "4 2nd Court",
-      "mobileContact": "546-307-4416",
-      "category": "Outpatient",
-      "id": "29f2"
     },
     {
       "patientId": "P2345",

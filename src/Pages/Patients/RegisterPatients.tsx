@@ -44,7 +44,7 @@ const RegisterPatients = () => {
     };
     setLoading(true);
     setTimeout(() => {
-      fetch("http://localhost:8000/patients", {
+      fetch("http://localhost:8001/patients", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

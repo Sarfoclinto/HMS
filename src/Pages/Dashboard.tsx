@@ -1,10 +1,10 @@
 import { Avatar, Button, Card, Flex, Modal, Table, message } from "antd";
 import { FaBed, FaUserNurse, FaUserTag, FaWheelchair } from "react-icons/fa6";
+import { FaTeamspeak, FaMoneyCheck, FaTools } from "react-icons/fa";
 import { GiMedicines } from "react-icons/gi";
 import { HiBeaker } from "react-icons/hi";
 import type { TableProps } from "antd";
 import { useEffect, useState } from "react";
-import { BsPersonFill } from "react-icons/bs";
 import { FieldType } from "../Modules/types";
 import { PatientType } from "../Modules/types";
 import { useOutletContext } from "react-router-dom";
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
   const fetchUsers = () => {
     setLoading(true);
-    fetch("http://localhost:8000/users")
+    fetch("http://localhost:8001/users")
       .then((res) => {
         if (!res.ok) {
           message.info("Sorry, there was an error");
@@ -55,10 +55,15 @@ const Dashboard = () => {
             return {
               ...user,
               picture:
-                user.department === "technical" ? (
-                  <Avatar icon={<BsPersonFill />} />
+                user.department === "Technical" ? (
+                  // technical
+                  <Avatar icon={<FaTools color="blue" />} />
+                ) : user.department === "Supportive" ? (
+                  // supportive
+                  <Avatar icon={<FaTeamspeak color="blue" />} />
                 ) : (
-                  <Avatar icon={<BsPersonFill />} />
+                  // accounting
+                  <Avatar icon={<FaMoneyCheck color="blue" />} />
                 ),
               name: user.fullname,
               email: user.email,

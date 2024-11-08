@@ -27,7 +27,7 @@ const LogInForm = () => {
 
   // const fetchUsers = () => {
   //   setLoading(true);
-  //   fetch("http://localhost:8000/users")
+  //   fetch("http://localhost:8001/users")
   //     .then((res) => {
   //       if (!res.ok) {
   //         message.info("Sorry, there was an error");
@@ -80,7 +80,7 @@ const LogInForm = () => {
     let user;
 
     setLoading(true);
-    fetch("http://localhost:8000/users")
+    fetch("http://localhost:8001/users")
       .then((res) => {
         if (!res.ok) {
           message.info("Sorry, there was an error");

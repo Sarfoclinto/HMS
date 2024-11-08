@@ -17,7 +17,7 @@ const MainLayout = () => {
 
   const fetchPatients = () => {
     setLoading(true);
-    fetch("http://localhost:8000/patients")
+    fetch("http://localhost:8001/patients")
       .then((res) => {
         if (!res.ok) {
           message.info("Sorry, there was an error");
@@ -71,7 +71,7 @@ const MainLayout = () => {
           ) : (
             <Navigate to="/" />
           )}
-          <footer className="my-3 text-sm font-medium">
+          <footer className="my-3 text-s ">
             2023 - 2024 &copy; <span>Hospital Management System</span>{" "}
           </footer>
         </Content>

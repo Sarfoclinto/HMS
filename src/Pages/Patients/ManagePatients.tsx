@@ -32,7 +32,7 @@ type select = {
 };
 const ManagePatients = () => {
   const { patients, setPatients, loading, setAdd }: Props = useOutletContext();
-
+  const [filterby, setFilterBy] = useState("");
   const [select, setSelect] = useState<select>();
   const [deleteModal, setDeleteModal] = useState<boolean>(false);
   const [deletePatientRecord, setDeletePatientRecord] = useState<PatientType>();
@@ -62,7 +62,7 @@ const ManagePatients = () => {
   const singleDeletePateint = () => {
     setDeleting(true);
     setTimeout(() => {
-      fetch(`http://localhost:8000/patients/${deletePatientRecord?.id}`, {
+      fetch(`http://localhost:8001/patients/${deletePatientRecord?.id}`, {
         method: "DELETE",
       })
         .then((res) => {
@@ -233,15 +233,30 @@ const ManagePatients = () => {
     },
   ];
 
-  const dataSource = patients.map((patient) => {
-    return {
+  // const dataSource = patients.map((patient) => {
+  //   return {
+  //     ...patient,
+  //     key: `${patient.patientId}-${patient.firstName?.charAt(
+  //       1
+  //     )}-${patient.lastName?.charAt(1)}`,
+  //     fullname: `${patient.firstName}  ${patient.lastName}`,
+  //   };
+  // });
+
+  const dataSource = patients
+    .filter((patient: PatientType) => {
+      if (!filterby) return true; // If no filter is applied, include all patients
+      const fullName = `${patient.firstName} ${patient.lastName}`.toLowerCase();
+      return fullName.includes(filterby.toLowerCase());
+    })
+    .map((patient) => ({
       ...patient,
-      key: `${patient.patientId}-${patient.firstName?.charAt(
-        1
-      )}-${patient.lastName?.charAt(1)}`,
-      fullname: `${patient.firstName}  ${patient.lastName}`,
-    };
-  });
+      key: `${patient.patientId}-${patient.firstName?.[0] || ""}-${
+        patient.lastName?.[0] || ""
+      }`,
+      fullname: `${patient.firstName} ${patient.lastName}`,
+    }));
+
   const close = () => {
     setDeleteModal(false);
   };
@@ -324,7 +339,7 @@ const ManagePatients = () => {
                 close();
               }}
             >
-              Cancle
+              Cancel
             </Button>
           </Space>
         </Flex>
@@ -337,7 +352,13 @@ const ManagePatients = () => {
       </Flex>
       <Card>
         <Flex align="center" justify="space-between" className="mb-5">
-          <Input width={50} className="w-1/4" placeholder="Search" />
+          <Input
+            width={50}
+            className="w-1/4"
+            placeholder="Search"
+            value={filterby}
+            onChange={(e) => setFilterBy(e.target.value)}
+          />
           {select && select?.selectedrows?.length >= 2 && (
             <Button
               size="middle"
