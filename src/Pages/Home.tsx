@@ -6,6 +6,7 @@ import LogInForm from "../Components/LogInForm";
 import SignUpForm from "../Components/SignUpForm";
 
 const Home = () => {
+  
   const [loginModalOpen, setLoginModalOpen] = useState<boolean>(false);
   const [clicked, setClicked] = useState<string>("");
 
